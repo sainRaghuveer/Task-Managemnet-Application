@@ -9,10 +9,20 @@ interface Task {
 }
 
 const HomePage: React.FC = () => {
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [editingTaskId, setEditingTaskId] = useState('');
+  const [newTask, setNewTask] = useState<Task>({
+    id: '',
+    title: '',
+    description: '',
+    status: 'To Do',
+  });
+
+
   
 
   return (
-    <div className="container">
+    <div className="container mx-auto flex">
       
     </div>
   );

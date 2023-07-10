@@ -30,3 +30,22 @@ body {
     )
     rgb(var(--background-start-rgb)); */
 }
+
+.task-item {
+  @apply border border-gray-300 rounded p-4 transition duration-300 ease-in-out;
+}
+
+.task-item:hover {
+  @apply shadow-md;
+}
+
+.task-item input,
+.task-item textarea,
+.task-item select {
+  @apply border border-gray-300 rounded p-2;
+}
+
+/* .task-item button {
+  @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+} */
+
