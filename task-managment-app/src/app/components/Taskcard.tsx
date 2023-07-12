@@ -43,6 +43,7 @@ const Taskcard: React.FC<TaskCardProps> = ({
         <strong className="font-bold">Title: </strong>
         {editingTaskId === task.id ? (
           <input
+            name="title"
             type="text"
             defaultValue={editedTask.title}
             onChange={handleChange}
@@ -56,6 +57,7 @@ const Taskcard: React.FC<TaskCardProps> = ({
         <strong className="font-bold">Description: </strong>
         {editingTaskId === task.id ? (
           <textarea
+          name="description"
           defaultValue={editedTask.description}
             onChange={handleChange}
             className="border rounded py-2 px-3 w-full"
@@ -68,6 +70,7 @@ const Taskcard: React.FC<TaskCardProps> = ({
         <strong className="font-bold">Status: </strong>
         {editingTaskId === task.id ? (
           <select
+          name="status"
           defaultValue={editedTask.status}
             onChange={handleChange}
             className="border rounded py-2 px-3 w-full"
