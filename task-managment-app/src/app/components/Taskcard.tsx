@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface Task {
   id: string;
@@ -24,6 +24,18 @@ const Taskcard: React.FC<TaskCardProps> = ({
   handleDelete,
   handleCancel,
 }) => {
+
+  const [editedTask, setEditedTask] = useState<Task>({ ...task });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setEditedTask((prevTask) => ({ ...prevTask, [name]: value }));
+  };
+
+  const handleSaveClick = () => {
+    handleSave(editedTask);
+  };
+
   return (
     <li key={task.id} className="mb-4 task-item">
       {/* Rendering Task Details as provided by parent component Page.tsx */}
@@ -32,8 +44,8 @@ const Taskcard: React.FC<TaskCardProps> = ({
         {editingTaskId === task.id ? (
           <input
             type="text"
-            value={task.title}
-            onChange={(e) => handleSave({ ...task, title: e.target.value })}
+            defaultValue={editedTask.title}
+            onChange={handleChange}
             className="border rounded py-2 px-3 w-full"
           />
         ) : (
@@ -44,8 +56,8 @@ const Taskcard: React.FC<TaskCardProps> = ({
         <strong className="font-bold">Description: </strong>
         {editingTaskId === task.id ? (
           <textarea
-            value={task.description}
-            onChange={(e) => handleSave({ ...task, description: e.target.value })}
+          defaultValue={editedTask.description}
+            onChange={handleChange}
             className="border rounded py-2 px-3 w-full"
           />
         ) : (
@@ -56,8 +68,8 @@ const Taskcard: React.FC<TaskCardProps> = ({
         <strong className="font-bold">Status: </strong>
         {editingTaskId === task.id ? (
           <select
-            value={task.status}
-            onChange={(e) => handleSave({ ...task, status: e.target.value })}
+          defaultValue={editedTask.status}
+            onChange={handleChange}
             className="border rounded py-2 px-3 w-full"
           >
             <option value="To Do">To Do</option>
@@ -71,7 +83,7 @@ const Taskcard: React.FC<TaskCardProps> = ({
       <div className="mt-2">
         {editingTaskId === task.id ? (
           <button
-            onClick={() => handleSave(task)}
+            onClick={handleSaveClick}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
           >
             Save
