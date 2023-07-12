@@ -16,6 +16,7 @@
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.9",
     "mobx": "^6.9.0",
+    "mobx-react": "^7.6.0",
     "mobx-react-lite": "^3.4.3",
     "mobx-state-tree": "^5.1.8",
     "next": "13.4.9",
